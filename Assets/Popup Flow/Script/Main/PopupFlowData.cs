@@ -16,6 +16,9 @@ namespace AbS
         public Action OnShow;
         public Action OnHide;
 
+        public bool HideOnConfirm = true;
+        public bool HideOnCancel = true;
+
         public PopupFlowData Clone()
         {
             return new PopupFlowData
@@ -27,7 +30,9 @@ namespace AbS
                 OnConfirm = this.OnConfirm,
                 OnCancel = this.OnCancel,
                 OnShow = this.OnShow,
-                OnHide = this.OnHide
+                OnHide = this.OnHide,
+                HideOnConfirm = this.HideOnConfirm,
+                HideOnCancel = this.HideOnCancel
             };
         }
     }

@@ -113,13 +113,19 @@ namespace AbS
             confirmButton.onClick.AddListener(() =>
             {
                 currentData?.OnConfirm?.Invoke();
-                Hide();
+
+                // Only hide if allowed
+                if (currentData == null || currentData.HideOnConfirm)
+                    Hide();
             });
 
             cancelButton.onClick.AddListener(() =>
             {
                 currentData?.OnCancel?.Invoke();
-                Hide();
+
+                // Only hide if allowed
+                if (currentData == null || currentData.HideOnCancel)
+                    Hide();
             });
         }
 

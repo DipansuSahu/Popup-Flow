@@ -99,7 +99,9 @@ namespace AbS
             Action onConfirm = null,
             Action onCancel = null,
             Action onShow = null,
-            Action onHide = null
+            Action onHide = null,
+            bool hideOnConfirm = true,
+            bool hideOnCancel = true
         )
         {
             PopupFlowData data = BuildPopupData(
@@ -112,6 +114,9 @@ namespace AbS
                 onShow,
                 onHide
             );
+
+            data.HideOnConfirm = hideOnConfirm;
+            data.HideOnCancel = hideOnCancel;
 
             EnqueueOrShow(data);
         }
@@ -193,28 +198,78 @@ namespace AbS
             Show(title, description, null, null, onConfirm, onCancel, null, null);
         }
 
-        public void Show(
-            string title,
-            string description,
-            string confirmButton,
-            string cancelButton,
-            Action onConfirm,
-            Action onCancel
-        )
+        public void Show(string title, string description, string confirmButton, string cancelButton, Action onConfirm, Action onCancel)
         {
             Show(title, description, confirmButton, cancelButton, onConfirm, onCancel, null, null);
         }
 
-        public void Show(
-            string title,
-            string description,
-            Action onConfirm,
-            Action onCancel,
-            Action onShow,
-            Action onHide
-        )
+        public void Show(string title, string description, Action onConfirm, Action onCancel, Action onShow, Action onHide)
         {
             Show(title, description, null, null, onConfirm, onCancel, onShow, onHide);
+        }
+
+        public void Show(string title, string description, string confirmButton, Action onConfirm, bool hideOnConfirm)
+        {
+            Show(
+                title: title,
+                description: description,
+                confirmButton: confirmButton,
+                cancelButton: null,
+                onConfirm: onConfirm,
+                onCancel: null,
+                onShow: null,
+                onHide: null,
+                hideOnConfirm: hideOnConfirm,
+                hideOnCancel: true
+            );
+        }
+
+        public void Show(string title, string description, string confirmButton, string cancelButton, Action onConfirm, Action onCancel, bool hideOnConfirm)
+        {
+            Show(
+                title: title,
+                description: description,
+                confirmButton: confirmButton,
+                cancelButton: cancelButton,
+                onConfirm: onConfirm,
+                onCancel: onCancel,
+                onShow: null,
+                onHide: null,
+                hideOnConfirm: hideOnConfirm,
+                hideOnCancel: true
+            );
+        }
+
+        public void Show(string title, string description, string confirmButton, string cancelButton, Action onConfirm, Action onCancel, bool hideOnConfirm, bool hideOnCancel)
+        {
+            Show(
+                title: title,
+                description: description,
+                confirmButton: confirmButton,
+                cancelButton: cancelButton,
+                onConfirm: onConfirm,
+                onCancel: onCancel,
+                onShow: null,
+                onHide: null,
+                hideOnConfirm: hideOnConfirm,
+                hideOnCancel: hideOnCancel
+            );
+        }
+
+        public void Show(string title, string description, Action onConfirm, Action onCancel, bool hideOnConfirm, bool hideOnCancel)
+        {
+            Show(
+                title: title,
+                description: description,
+                confirmButton: null,
+                cancelButton: null,
+                onConfirm: onConfirm,
+                onCancel: onCancel,
+                onShow: null,
+                onHide: null,
+                hideOnConfirm: hideOnConfirm,
+                hideOnCancel: hideOnCancel
+            );
         }
 
         #endregion Show Method Overloads
